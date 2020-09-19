@@ -973,15 +973,6 @@ namespace platform
     return 1;
   }
   
-  int setfps(lua_State* L)
-  {
-    //TODO: this call should syncronize to 30fps, at the moment it just
-    // returns producing a lot of flips in non synchronized code (eg. _init() busy loop)
-    //TODO: flip is handled by backend so we should find a way to set the callback that should be called
-
-    return 0;
-  }
-
   int flip(lua_State* L)
   {
     //TODO: this call should syncronize to 30fps, at the moment it just
