@@ -1,6 +1,9 @@
 #pragma once
 
 #include <array>
+/* Fixes undefined issues with GCC 10+ - Gameblabla */
+#include <cstddef>
+#include <cstdint>
 
 namespace retro8
 {

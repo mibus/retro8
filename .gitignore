@@ -1,7 +1,9 @@
 *.o
+*.elf
 projects/vs2017/libs/**
 projects/opendingux/**
 **/.vs/**
 **/Debug/**
 **/Release/**
 .DS_Store
+*.p8
