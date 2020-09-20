@@ -10,7 +10,7 @@ OBJ_C		= $(notdir $(patsubst %.c, %.o, $(SRC_C)))
 OBJ_CP		= $(notdir $(patsubst %.cpp, %.o, $(SRC_CP)))
 OBJS		= $(OBJ_C) $(OBJ_CP)
 
-CFLAGS		=  -Ofast -fno-PIC -flto -march=armv5te -mtune=arm926ej-s
+CFLAGS		=  -Ofast -fdata-sections -ffunction-sections -fno-PIC -flto -march=armv5te -mtune=arm926ej-s
 CFLAGS		+= -DLSB_FIRST -DALIGN_DWORD
 CFLAGS		+= -Isrc/gen -Isrc -Isrc/io -Isrc/lua -Isrc/sdl12 -Isrc/vm
 

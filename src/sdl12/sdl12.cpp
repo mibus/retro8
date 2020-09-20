@@ -56,18 +56,21 @@ void deinit()
 
 bool load_game(char* rom_name)
 {
-	size_t sz;
+	size_t sz = 0;
 	FILE* fp;
+	uint8_t* bdata;
 	input.reset();
-
-	if (memcmp(rom_name, ".PNG", 4) == 0)
+	
+	if (strstr(rom_name, ".PNG") || strstr(rom_name, ".png"))
 	{
 		fp = fopen(rom_name, "rb");
 		if (fp)
 		{
 			fseek(fp, 0 , SEEK_END);
 			sz = ftell(fp);
-			fseek(fp, 0 , SEEK_SET);// needed for next read from beginning of file
+			fseek(fp, 0 , SEEK_SET);
+			bdata = (uint8_t*)malloc(sz);
+			fread(bdata, sz, 1, fp);
 			fclose(fp);
 		}
 		else
@@ -77,8 +80,11 @@ bool load_game(char* rom_name)
 		
 		std::vector<uint8_t> out;
 		unsigned long width, height;
-		auto result = Platform::loadPNG(out, width, height, (uint8_t*)rom_name, sz, true);
+		auto result = Platform::loadPNG(out, width, height, (uint8_t*)bdata, sz, true);
 		assert(result == 0);
+		
+		if (bdata) free(bdata);
+		
 		r8::io::Stegano stegano;
 		stegano.load({ reinterpret_cast<const uint32_t*>(out.data()), nullptr, out.size() / 4 }, machine);
 	}
