@@ -12,7 +12,12 @@
 #include <SDL/SDL.h>
 
 namespace r8 = retro8;
-using pixel_t = uint16_t;
+using pixel_t =
+#ifdef RS90
+uint8_t;
+#else
+uint16_t;
+#endif
 
 std::future<void> _initFuture;
 
@@ -241,6 +246,7 @@ int main(int argc, char* argv[])
 	| SDL_DOUBLEBUF
 	#endif
 	 );
+	SDL_ShowCursor(0);
 	
 	SDL_AudioSpec wantSpec, spec;
 	wantSpec.freq = 44100;

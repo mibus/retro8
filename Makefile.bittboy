@@ -2,6 +2,8 @@ PRGNAME     = retro8.elf
 CC			= /opt/bittboy-toolchain/usr/bin/arm-linux-gcc
 CXX			= /opt/bittboy-toolchain/usr/bin/arm-linux-g++
 
+PROFILE = 0
+
 SRCDIR		=  ./src/gen ./src/io ./src/lua ./src/sdl12 ./src/vm ./src/sound
 VPATH		= $(SRCDIR)
 SRC_C		= $(foreach dir, $(SRCDIR), $(wildcard $(dir)/*.c))
